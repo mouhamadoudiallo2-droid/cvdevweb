@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV de Mouhamadou DIALLO | Développeur Web</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../CSS/sltye1.css">
+
+    <meta name="description" content="CV en ligne de Mouhamadou DIALLO : Développeur Web Full-Stack. Découvrez mes projets en HTML, CSS et JavaScript.">
+    <meta name="keywords" content="Mouhamadou DIALLO, CV, Développeur Web, HTML, CSS, JavaScript, Portfolio">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="Page.HTML" target="_blank">Mon CV</a></li>
+            <li><a href="contact.html" target="_blank">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="accueil" class="section visible">
+        <div id="contenu" class="photo-texte">
+            <img src="../IMAGES/RASSOULH.jpg" alt="Photo de Mouhamadou DIALLO" id="photoProfil">
+            <div class="texte">
+                <p>Mouhamadou DIALLO</p> 
+                <h1 id="nomPrenom"></h1> 
+            </div>
+        </div>
+    </section>
+
+    <button id="backToTop">↑</button>
+
+    <script>
+        // ==================================================================
+        // 1. Effet de texte tapé (Typing Effect)
+        // ==================================================================
+        const texteComplet = "Ravi de vous accueillir dans mon espace.<br>Veuillez explorer mon univers professionnel.";
+        const titreH1 = document.getElementById("nomPrenom");
+        let index = 0;
+        
+        function typing() {
+            if (index < texteComplet.length) {
+                index++; 
+                titreH1.innerHTML = texteComplet.substring(0, index) + '_'; // Ajout d'un curseur visuel temporaire
+                setTimeout(typing, 50);
+            } else {
+                titreH1.innerHTML = texteComplet; // Assure l'affichage final sans le curseur temporaire
+            }
+        }
+        typing();
+        
+        // ==================================================================
+        // 2. Animation au scroll et Bouton Retour en haut
+        // (Le code ci-dessous est celui que vous aviez, il est correct)
+        // ==================================================================
+        const sections = document.querySelectorAll('.section');
+        function revealSections() {
+            const windowHeight = window.innerHeight;
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if(sectionTop < windowHeight - 100){ 
+                    section.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections);
+
+        const backToTop = document.getElementById("backToTop");
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        window.addEventListener("scroll", () => {
+            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+        });
+    </script>
+
+</body>
+</html>
